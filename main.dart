@@ -3,7 +3,11 @@ import 'package:sample/Sign%20in.dart';
 import 'package:sample/Sign%20up.dart';
 
 void main() {
-  runApp(const Sign_in());
+  runApp(
+    MaterialApp(
+      home: const Sign_in(),
+    ),
+  );
 }
 
 class LoginPage extends StatefulWidget {

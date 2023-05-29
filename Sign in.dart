@@ -11,8 +11,7 @@ class Sign_in extends StatefulWidget {
 class _Sign_in extends State<Sign_in> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        home: Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFF232323),
       body: SafeArea(
         child: Center(
@@ -164,6 +163,6 @@ class _Sign_in extends State<Sign_in> {
           ),
         ),
       ),
-    ));
+    );
   }
 }
