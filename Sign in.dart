@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample/Home%20page.dart';
 import 'package:sample/Sign%20up.dart';
 
 class Sign_in extends StatefulWidget {
@@ -87,7 +88,12 @@ class _Sign_in extends State<Sign_in> {
                   height: 30,
                 ),
                 ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                          builder: (context) => const Home_page()),
+                    );
+                  },
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
