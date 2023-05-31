@@ -2,7 +2,6 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:sample/Home%20pages/Home.dart';
 import 'package:sample/Home%20pages/Library.dart';
-import 'package:sample/Sign%20up.dart';
 
 import 'Home pages/Account.dart';
 import 'Home pages/Shop.dart';
