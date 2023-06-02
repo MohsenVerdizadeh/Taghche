@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:sample/oop%20classes/Book.dart';
 
 class Bookdetails extends StatefulWidget {
@@ -7,19 +8,21 @@ class Bookdetails extends StatefulWidget {
   final String details;
   final String imageUrl;*/
 
-  const Bookdetails(
-      {Key? key,
-      /*required this.title,
+  const Bookdetails({
+    Key? key,
+    /*required this.title,
       required this.author,
       required this.details,
-      required this.imageUrl*/})
-      : super(key: key);
+      required this.imageUrl*/
+  }) : super(key: key);
 
   @override
   State<Bookdetails> createState() => _BookdetailsState();
 }
 
 class _BookdetailsState extends State<Bookdetails> {
+  double _rating = 3.0;
+
   // final Book book;
   //
   // _BookdetailsState(this.book);
@@ -29,7 +32,9 @@ class _BookdetailsState extends State<Bookdetails> {
       backgroundColor: Color(0xFF232323),
       body: ListView(
         children: [
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Center(
             child: Container(
               height: 250,
@@ -43,7 +48,9 @@ class _BookdetailsState extends State<Bookdetails> {
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Center(
             child: Text(
               'How to program java',
@@ -55,7 +62,9 @@ class _BookdetailsState extends State<Bookdetails> {
               ),
             ),
           ),
-          SizedBox(height: 20,),
+          SizedBox(
+            height: 20,
+          ),
           Center(
             child: Text(
               'ditel and ditel',
@@ -66,6 +75,46 @@ class _BookdetailsState extends State<Bookdetails> {
               ),
             ),
           ),
+          SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              IconButton(
+                  onPressed: () {},
+                  icon: Icon(
+                    Icons.bookmark_border_outlined,
+                    color: Color(0xFF3dd9d6),
+                  )),
+              SizedBox(
+                width: 60,
+              ),
+              RatingBar.builder(
+                itemSize: 20,
+                initialRating: _rating,
+                minRating: 1,
+                direction: Axis.horizontal,
+                allowHalfRating: true,
+                itemCount: 5,
+                itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                itemBuilder: (context, _) =>
+                    Icon(
+                      Icons.star,
+                      color: Color(0xFF3dd9d6),
+                    ),
+                onRatingUpdate: (rating) {
+                  setState(() {
+                    _rating = rating;
+                  });
+                },
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 20,
+          ),
+
+
         ],
       ),
     );
