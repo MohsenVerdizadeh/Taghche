@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'Details.dart';
+
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
 
@@ -67,7 +69,11 @@ class _HomeState extends State<Home>  {
                             ),
                           ),
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(builder: (context) => const Bookdetails()),
+                              );
+                            },
                             child: Text(
                               'details',
                               style: TextStyle(
