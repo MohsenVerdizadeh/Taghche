@@ -113,7 +113,66 @@ class _BookdetailsState extends State<Bookdetails> {
           SizedBox(
             height: 20,
           ),
-
+          MaterialButton(
+            onPressed: () {},
+            child: Container(
+              height: 50,
+              width: 300,
+              decoration: BoxDecoration(
+                  color: Color(0xFF3dd9d6),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                child: Text(
+                  'Shop | \$5' /*book.price*/,
+                  style: TextStyle(
+                      color: Color(0xFF297171),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          MaterialButton(
+            onPressed: () {},
+            child: Container(
+              height: 50,
+              width: 300,
+              decoration: BoxDecoration(
+                  border: Border.all(color: Color(0xFF3dd9d6)),
+                  color: Color(0xFF297171),
+                  borderRadius: BorderRadius.circular(10)),
+              child: Center(
+                child: Text(
+                  'Example' /*book.price*/,
+                  style: TextStyle(
+                      color: Color(0xFF3dd9d6),
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+              child: Text(
+                'Welcome to this course on Flutter Tutorials for beginners. Flutter is an open-source UI software development kit created by Google.Flutter is SDK that makes creating high-performing, modern and good looking apps. Flutter is easy and Works for both Android and iOS. Flutter is An open-source toolkit, developed by Google.'
+                ,
+                style: TextStyle(
+                  color: Color(0xFF3dd9d6),
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'OoohBaby',
+                ),
+              ),
+            ),
+          ),
 
         ],
       ),
