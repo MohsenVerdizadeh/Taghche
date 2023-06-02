@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:sample/Sign%20in.dart';
 
+import '../Themes/Themes.dart';
+
 class Account extends StatefulWidget {
   //final User user;
 
-  const Account({Key? key}) : super(key: key);
+  const Account({Key? key /*, required this.user*/
+      })
+      : super(key: key);
 
   @override
   State<Account> createState() => _AccountState();
 }
 
 class _AccountState extends State<Account> {
+  // final User user;
+  // _AccountState(this.user);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +59,7 @@ class _AccountState extends State<Account> {
               border: Border.all(color: Color(0xFF3dd9d6)),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage('assets/images/1.png'),
+                image: AssetImage(/*user.imageUrl*/ 'assets/images/1.png'),
               ),
               shape: BoxShape.circle,
             ),
@@ -61,6 +68,7 @@ class _AccountState extends State<Account> {
             height: 10,
           ),
           Text(
+            /*user.name*/
             'Mohsen verdizadeh',
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -74,7 +82,7 @@ class _AccountState extends State<Account> {
             height: 10,
           ),
           Text(
-            '\$ 25',
+            '\$ 25' /*+user.credit*/,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
@@ -158,7 +166,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
           child: Text(
             'Increase credit         ',
             style: TextStyle(
-              fontFamily: 'OoohBaby',
+                fontFamily: 'OoohBaby',
                 color: Color(0xFF3dd9d6),
                 fontWeight: FontWeight.bold,
                 fontSize: 25),
@@ -203,10 +211,10 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const PaymentPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const PaymentPage()),
                   );
                 },
               ),
@@ -232,10 +240,10 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const PaymentPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const PaymentPage()),
                   );
                 },
               ),
@@ -261,10 +269,10 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
                 onTap: () {
                   Navigator.of(context).push(
-                    MaterialPageRoute(builder: (context) => const PaymentPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const PaymentPage()),
                   );
                 },
               ),
@@ -290,10 +298,12 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-
-                onTap: () {Navigator.of(context).push(
-                  MaterialPageRoute(builder: (context) => const PaymentPage()),
-                );},
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) => const PaymentPage()),
+                  );
+                },
               ),
             ),
           ),
@@ -330,7 +340,9 @@ class _PaymentPageState extends State<PaymentPage> {
       backgroundColor: Color(0xFF232323),
       body: Column(
         children: [
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           //Card
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -343,7 +355,9 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
               child: Column(
                 children: [
-                  SizedBox(height: 20,),
+                  SizedBox(
+                    height: 20,
+                  ),
                   Center(
                     child: Text(
                       '1024  2548  3658  1547',
@@ -354,7 +368,9 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontSize: 30),
                     ),
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(
+                    height: 15,
+                  ),
                   Center(
                     child: Text(
                       'Mhsen verdizadeh kohi',
@@ -365,11 +381,15 @@ class _PaymentPageState extends State<PaymentPage> {
                           fontSize: 25),
                     ),
                   ),
-                  SizedBox(height: 30,),
+                  SizedBox(
+                    height: 30,
+                  ),
                   Center(
                     child: Row(
                       children: [
-                        SizedBox(width: 10,),
+                        SizedBox(
+                          width: 10,
+                        ),
                         Text(
                           'CVV2 : 821',
                           style: TextStyle(
@@ -378,7 +398,9 @@ class _PaymentPageState extends State<PaymentPage> {
                               fontWeight: FontWeight.bold,
                               fontSize: 18),
                         ),
-                        SizedBox(width: 30,),
+                        SizedBox(
+                          width: 30,
+                        ),
                         Text(
                           'Expiration date : 2023/12/7',
                           style: TextStyle(
@@ -390,12 +412,13 @@ class _PaymentPageState extends State<PaymentPage> {
                       ],
                     ),
                   ),
-
                 ],
               ),
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Container(
@@ -418,7 +441,9 @@ class _PaymentPageState extends State<PaymentPage> {
               ),
             ),
           ),
-          SizedBox(height: 15,),
+          SizedBox(
+            height: 15,
+          ),
           ElevatedButton(
             onPressed: () {
               Navigator.of(context).pop(context);
@@ -427,10 +452,10 @@ class _PaymentPageState extends State<PaymentPage> {
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  )),
+                borderRadius: BorderRadius.circular(18.0),
+              )),
               backgroundColor:
-              MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
+                  MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
             ),
             child: Text(
               '   Pay   ',
@@ -445,5 +470,3 @@ class _PaymentPageState extends State<PaymentPage> {
     );
   }
 }
-
-
