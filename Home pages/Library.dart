@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:sample/Home%20pages/LibraryPages/CollectionOfEbooks.dart';
 
 class Library extends StatefulWidget {
   const Library({Key? key}) : super(key: key);
@@ -61,7 +62,12 @@ class _LibraryState extends State<Library> {
                                 Icons.arrow_forward_ios_outlined,
                                 color: Color(0xFF3dd9d6),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const CollectionOfEbooks()),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -89,7 +95,12 @@ class _LibraryState extends State<Library> {
                                 Icons.arrow_forward_ios_outlined,
                                 color: Color(0xFF3dd9d6),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const CollectionOfAudioBooks()),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -117,7 +128,12 @@ class _LibraryState extends State<Library> {
                                 Icons.arrow_forward_ios_outlined,
                                 color: Color(0xFF3dd9d6),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const CollectionOfEbooks()),
+                                );
+                              },
                             ),
                           ),
                         ),
@@ -145,7 +161,12 @@ class _LibraryState extends State<Library> {
                                 Icons.arrow_forward_ios_outlined,
                                 color: Color(0xFF3dd9d6),
                               ),
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                      builder: (context) => const CollectionOfEbooks()),
+                                );
+                              },
                             ),
                           ),
                         ),
