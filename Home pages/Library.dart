@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sample/Home%20pages/LibraryPages/CollectionOfEbooks.dart';
+import 'package:sample/Home%20pages/LibraryPages/CollectionOfReaded.dart';
+import 'package:sample/Home%20pages/LibraryPages/CollectionsOfDownloded.dart';
+
+import 'LibraryPages/CollectionOfAudioBooks.dart';
 
 class Library extends StatefulWidget {
   const Library({Key? key}) : super(key: key);
@@ -131,7 +135,7 @@ class _LibraryState extends State<Library> {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => const CollectionOfEbooks()),
+                                      builder: (context) => const CollectionOfDownloaded()),
                                 );
                               },
                             ),
@@ -164,7 +168,7 @@ class _LibraryState extends State<Library> {
                               onTap: () {
                                 Navigator.of(context).push(
                                   MaterialPageRoute(
-                                      builder: (context) => const CollectionOfEbooks()),
+                                      builder: (context) => const CollectionOfReaded()),
                                 );
                               },
                             ),

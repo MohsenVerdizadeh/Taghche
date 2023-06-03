@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../Details.dart';
 
-class CollectionOfEbooks extends StatelessWidget {
-  const CollectionOfEbooks({Key? key}) : super(key: key);
+class CollectionOfAudioBooks extends StatelessWidget {
+  const CollectionOfAudioBooks({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

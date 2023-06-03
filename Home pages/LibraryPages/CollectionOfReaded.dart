@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../Details.dart';
 
-class CollectionOfEbooks extends StatelessWidget {
-  const CollectionOfEbooks({Key? key}) : super(key: key);
+class CollectionOfReaded extends StatelessWidget {
+  const CollectionOfReaded({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +13,7 @@ class CollectionOfEbooks extends StatelessWidget {
         backgroundColor: Color(0xFF297171),
         title: Center(
           child: Text(
-            'My ebooks        ',
+            'My readed        ',
             style: TextStyle(
               fontSize: 25,
               fontFamily: 'OoohBaby',
