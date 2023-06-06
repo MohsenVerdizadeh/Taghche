@@ -4,11 +4,11 @@ import 'package:sample/Themes/Themes.dart';
 
 void main() {
   runApp(
-    MaterialApp(
+    const MaterialApp(
       /*theme: ThemeData(),
       darkTheme: ThemeData(),
       themeMode: ThemeMode.light,*/
-      home: const Sign_in(),
+      home: Sign_in(),
     ),
   );
 }
