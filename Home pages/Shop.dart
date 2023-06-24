@@ -12,7 +12,7 @@ class _ShopState extends State<Shop> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF232323),
+     // backgroundColor: const Color(0xFF232323),
       appBar: AppBar(
         backgroundColor: Color(0xFF297171),
         title: Center(

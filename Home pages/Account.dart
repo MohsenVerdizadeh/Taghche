@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:sample/Sign%20in.dart';
 
-import '../Themes/Themes.dart';
 
 class Account extends StatefulWidget {
   //final User user;
 
   const Account({Key? key /*, required this.user*/
-      })
+  })
       : super(key: key);
 
   @override
@@ -21,7 +20,7 @@ class _AccountState extends State<Account> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+      //backgroundColor: Color(0xFF232323),
       appBar: AppBar(
         actions: [
           IconButton(
@@ -452,10 +451,10 @@ class _PaymentPageState extends State<PaymentPage> {
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(18.0),
-              )),
+                    borderRadius: BorderRadius.circular(18.0),
+                  )),
               backgroundColor:
-                  MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
+              MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
             ),
             child: Text(
               '   Pay   ',

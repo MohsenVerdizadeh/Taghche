@@ -8,7 +8,7 @@ class CollectionOfAudioBooks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+     // backgroundColor: Color(0xFF232323),
       appBar: AppBar(
         backgroundColor: Color(0xFF297171),
         title: Center(

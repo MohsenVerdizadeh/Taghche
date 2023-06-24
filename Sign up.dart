@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample/main.dart';
 
 class Sign_up extends StatefulWidget {
   const Sign_up({Key? key}) : super(key: key);
@@ -11,7 +12,7 @@ class _Sign_up extends State<Sign_up> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+      //backgroundColor: Color(0xFF232323),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -113,10 +114,10 @@ class _Sign_up extends State<Sign_up> {
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    )),
+                          borderRadius: BorderRadius.circular(18.0),
+                        )),
                     backgroundColor:
-                        MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
+                    MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
                   ),
                   child: Text(
                     '   sign up   ',

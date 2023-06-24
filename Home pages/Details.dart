@@ -29,7 +29,7 @@ class _BookdetailsState extends State<Bookdetails> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+     // backgroundColor: Color(0xFF232323),
       body: ListView(
         children: [
           SizedBox(

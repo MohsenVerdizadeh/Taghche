@@ -44,11 +44,11 @@ class _Home_page extends State<Home_page> {
         height: double.infinity,
         child: getSelectedWidget(index: index),
       ),
-      backgroundColor: Color(0xFF232323),
+      //backgroundColor: Color(0xFF232323),
       bottomNavigationBar: CurvedNavigationBar(
         height: 50,
         animationDuration: Duration(milliseconds: 300),
-        backgroundColor: Color(0xFF232323),
+        backgroundColor: Theme.of(context).canvasColor,
         color: Color(0xFF297171),
         items: items,
         index: index,

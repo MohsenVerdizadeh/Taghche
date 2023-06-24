@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        backgroundColor: const Color(0xFF232323),
+        //backgroundColor: const Color(0xFF232323),
         body: Column(
           children: [
             SizedBox(

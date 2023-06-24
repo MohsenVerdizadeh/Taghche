@@ -19,7 +19,7 @@ class _LibraryState extends State<Library> {
     return DefaultTabController(
       length: 3,
       child: Scaffold(
-        backgroundColor: Color(0xFF232323),
+        //backgroundColor: Color(0xFF232323),
         body: Column(
           children: [
             SizedBox(

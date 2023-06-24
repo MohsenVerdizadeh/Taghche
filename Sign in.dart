@@ -13,7 +13,7 @@ class _Sign_inState extends State<Sign_in> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF232323),
+      //backgroundColor: Color(0xFF232323),
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -34,7 +34,7 @@ class _Sign_inState extends State<Sign_in> {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 30,
-                      color: Color(0xFFe6efee)),
+                      color: Colors.white),
                 ),
                 SizedBox(
                   height: 40,
@@ -97,10 +97,10 @@ class _Sign_inState extends State<Sign_in> {
                   style: ButtonStyle(
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                         RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(18.0),
-                    )),
+                          borderRadius: BorderRadius.circular(18.0),
+                        )),
                     backgroundColor:
-                        MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
+                    MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
                   ),
                   child: Text(
                     '   sign in   ',
