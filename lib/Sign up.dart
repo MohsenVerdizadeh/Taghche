@@ -17,7 +17,7 @@ class Sign_up extends StatefulWidget {
 
 class _Sign_up extends State<Sign_up> {
   String response = "";
-  String showMessage = '';
+  bool _passwordVisibility = true;
   TextEditingController _usernameController = TextEditingController(text: "");
   TextEditingController _emailController = TextEditingController(text: "");
   TextEditingController _passwordController = TextEditingController(text: "");
@@ -67,14 +67,9 @@ class _Sign_up extends State<Sign_up> {
   }
 
   void addUser(User user) async {
-    await Socket.connect("192.168.1.103", 8000).then((serverSocket) {
-      final data = "sign up&&" +
-          user.username +
-          "&&" +
-          user.email +
-          "&&" +
-          user.password +
-          "\u0000";
+    await Socket.connect(StaticFields.ip, StaticFields.port)
+        .then((serverSocket) {
+      final data = "sign up&&" + userToJson(user) + StaticFields.postFix;
       serverSocket.write(data);
       serverSocket.flush();
       serverSocket.listen((res) {
@@ -173,14 +168,22 @@ class _Sign_up extends State<Sign_up> {
                       padding: const EdgeInsets.only(left: 5),
                       child: TextFormField(
                         controller: _passwordController,
-                        obscureText: true,
+                        obscureText: _passwordVisibility,
                         decoration: InputDecoration(
                             prefixIcon: Icon(
                               Icons.lock_outline,
                             ),
                             border: InputBorder.none,
                             hintText: 'Enter your password ',
-                            suffixIcon: Icon(Icons.remove_red_eye_outlined)),
+                            suffixIcon: IconButton(
+                              icon: Icon(Icons.remove_red_eye,
+                                  color: Color(0xFF3dd9d6)),
+                              onPressed: () {
+                                setState(() {
+                                  _passwordVisibility = !_passwordVisibility;
+                                });
+                              },
+                            )),
                       ),
                     ),
                   ),
@@ -194,9 +197,10 @@ class _Sign_up extends State<Sign_up> {
                         validateEmail(_emailController.text) == "~~" &&
                         validatePassword(_passwordController.text) == "~~") {
                       User newUser = User(
-                        _usernameController.text,
-                        _emailController.text,
-                        _passwordController.text,
+                        username: _usernameController.text,
+                        email: _emailController.text,
+                        password: _passwordController.text,
+                        credit: 0,
                       );
                       addUser(newUser);
                       if (response == 'account successfully created') {
