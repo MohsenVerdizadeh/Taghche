@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
+import '../oop classes/Models.dart';
+import '../oop classes/static_fields.dart';
 import 'Details.dart';
 
 class Home extends StatefulWidget {
@@ -10,6 +14,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // late List<Ebook> ebooks;
+  // late List<Audiobook> audiobooks;
+
+  // void getEbooks() async {
+  //   Socket serverSocket =
+  //       await Socket.connect(StaticFields.ip, StaticFields.port);
+  //   final data = "get all ebooks&&" + StaticFields.postFix;
+  //   serverSocket.write(data);
+  //   serverSocket.flush();
+  //   serverSocket.listen((res) {
+  //     setState(() {
+  //       final response = String.fromCharCodes(res);
+  //       print(response);
+  //       StaticFields.ebooks = ebookFromJson(response);
+  //     });
+  //   });
+  // }
+  //
+  // void getAudiobooks() async {
+  //   Socket serverSocket =
+  //       await Socket.connect(StaticFields.ip, StaticFields.port);
+  //   final data = "get all audiobooks&&" + StaticFields.postFix;
+  //   serverSocket.write(data);
+  //   serverSocket.flush();
+  //   serverSocket.listen((res) {
+  //     setState(() {
+  //       final response = String.fromCharCodes(res);
+  //       print(response);
+  //       StaticFields.audiobooks = audiobookFromJson(response);
+  //     });
+  //   });
+  // }
+
+  // @override
+  // void initState() async {
+  //   super.initState();
+  //   getEbooks();
+  //   getAudiobooks();
+  // }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -38,8 +82,9 @@ class _HomeState extends State<Home> {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(15),
                           image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: AssetImage("assets/images/1.png")),
+                            fit: BoxFit.fill,
+                            image: AssetImage("assets/images/1.jpg"),
+                          ),
                         ),
                       ),
                     ),
@@ -49,7 +94,7 @@ class _HomeState extends State<Home> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'How to program java',
+                            "how to java programm",
                             style: TextStyle(
                               color: Color(0xFF232323),
                               fontSize: 23,
@@ -61,7 +106,7 @@ class _HomeState extends State<Home> {
                             height: 10,
                           ),
                           Text(
-                            'ditel and ditel',
+                            "ditel ditel",
                             style: TextStyle(
                               color: Color(0xFF232323),
                               fontSize: 20,
@@ -70,10 +115,14 @@ class _HomeState extends State<Home> {
                           ),
                           TextButton(
                             onPressed: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                    builder: (context) => const Bookdetails()),
-                              );
+                              // if (StaticFields.activeUser!.ebooks.last !=
+                              //     null) {
+                              //   Navigator.of(context).push(
+                              //     MaterialPageRoute(
+                              //         builder: (context) =>
+                              //             const AudiobookDetails()),
+                              //   );
+                              // }
                             },
                             child: Text(
                               'details',
@@ -130,30 +179,36 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
-                                    );
-                                  },
-                                  child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Ebook ebook = StaticFields.ebooks[
+                                index]; // get the ebook at the current index
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => EbookDetails(
+                                        ebook: ebook,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Ink.image(
+                                  image: AssetImage(ebook.imagePath),
+                                  // use the image path from the ebook
+                                  width: 100,
+                                  fit: BoxFit.cover,
                                 ),
-                              );
-                            },
-                          )
-                          ),
+                              ),
+                            );
+                          },
+                        ),
+                      ),
                       Text(
                         '     New release',
                         style: TextStyle(
@@ -164,29 +219,35 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
-                                    );
-                                  },
-                                  child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Ebook ebook = StaticFields.ebooks[
+                                index]; // get the ebook at the current index
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => EbookDetails(
+                                        ebook: ebook,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Ink.image(
+                                  image: AssetImage(ebook.imagePath),
+                                  // use the image path from the ebook
+                                  width: 100,
+                                  fit: BoxFit.cover,
                                 ),
-                              );
-                            },
-                          )
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       Text(
                         '     Top selling',
@@ -198,29 +259,36 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Ebook ebook = StaticFields.ebooks[index];
+                            if (ebook.topSelling == true) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
+                                        builder: (context) => EbookDetails(
+                                          ebook: ebook,
+                                        ),
+                                      ),
                                     );
                                   },
                                   child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
+                                    image: AssetImage(ebook.imagePath),
+                                    // use the image path from the ebook
                                     width: 100,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               );
-                            },
-                          )
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),
@@ -240,29 +308,34 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
-                                    );
-                                  },
-                                  child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Audiobook audiobook = StaticFields.audiobooks[
+                                index]; // get the ebook at the current index
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                           AudiobookDetails(audiobook: audiobook,),
+                                    ),
+                                  );
+                                },
+                                child: Ink.image(
+                                  image: AssetImage(audiobook.imagePath),
+                                  // use the image path from the ebook
+                                  width: 100,
+                                  fit: BoxFit.cover,
                                 ),
-                              );
-                            },
-                          )
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       Text(
                         '     New release',
@@ -274,29 +347,34 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
-                              return Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: InkWell(
-                                  onTap: () {
-                                    Navigator.of(context).push(
-                                      MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
-                                    );
-                                  },
-                                  child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
-                                    width: 100,
-                                    fit: BoxFit.cover,
-                                  ),
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Audiobook audiobook = StaticFields.audiobooks[
+                                index]; // get the ebook at the current index
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) =>
+                                           AudiobookDetails(audiobook: audiobook,),
+                                    ),
+                                  );
+                                },
+                                child: Ink.image(
+                                  image: AssetImage(audiobook.imagePath),
+                                  // use the image path from the ebook
+                                  width: 100,
+                                  fit: BoxFit.cover,
                                 ),
-                              );
-                            },
-                          )
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       Text(
                         '     Top selling',
@@ -308,29 +386,36 @@ class _HomeState extends State<Home> {
                         ),
                       ),
                       SizedBox(
-                          height: 120,
-                          child: ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            itemCount: 5,
-                            itemBuilder: (context, index) {
+                        height: 120,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: StaticFields.ebooks.length,
+                          itemBuilder: (context, index) {
+                            Audiobook audiobook = StaticFields.audiobooks[
+                                index]; // get the ebook at the current index
+                            if (audiobook.topSelling == true) {
                               return Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: InkWell(
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                          builder: (context) => const Bookdetails()),
+                                        builder: (context) =>
+                                             AudiobookDetails(audiobook: audiobook,),
+                                      ),
                                     );
                                   },
                                   child: Ink.image(
-                                    image: AssetImage("assets/images/1.png"),
+                                    image: AssetImage(audiobook.imagePath),
+                                    // use the image path from the ebook
                                     width: 100,
                                     fit: BoxFit.cover,
                                   ),
                                 ),
                               );
-                            },
-                          )
+                            }
+                          },
+                        ),
                       ),
                     ],
                   ),

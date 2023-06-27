@@ -1,13 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:project/Home%20page.dart';
+import 'package:project/oop%20classes/static_fields.dart';
 
 import '../Sign in.dart';
-
+import '../oop classes/Models.dart';
 
 class Account extends StatefulWidget {
   //final User user;
 
   const Account({Key? key /*, required this.user*/
-  })
+      })
       : super(key: key);
 
   @override
@@ -31,13 +35,6 @@ class _AccountState extends State<Account> {
               color: Color(0xFF3dd9d6),
             ),
           ),
-          IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.dark_mode_outlined,
-              color: Color(0xFF3dd9d6),
-            ),
-          )
         ],
         backgroundColor: Color(0xFF297171),
         title: Text(
@@ -59,7 +56,7 @@ class _AccountState extends State<Account> {
               border: Border.all(color: Color(0xFF3dd9d6)),
               image: DecorationImage(
                 fit: BoxFit.fill,
-                image: AssetImage(/*user.imageUrl*/ 'assets/images/1.png'),
+                image: AssetImage(/*user.imageUrl*/ 'assets/images/2.jpg'),
               ),
               shape: BoxShape.circle,
             ),
@@ -69,7 +66,9 @@ class _AccountState extends State<Account> {
           ),
           Text(
             /*user.name*/
-            'Mohsen verdizadeh',
+            StaticFields.activeUser!.username +
+                "\n" +
+                StaticFields.activeUser!.email,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
@@ -82,7 +81,7 @@ class _AccountState extends State<Account> {
             height: 10,
           ),
           Text(
-            '\$ 25' /*+user.credit*/,
+            '\$ ' + StaticFields.activeUser!.credit.toString() /*+user.credit*/,
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: 22,
@@ -98,7 +97,10 @@ class _AccountState extends State<Account> {
           MaterialButton(
             onPressed: () {
               Navigator.of(context).push(
-                MaterialPageRoute(builder: (context) => const IncreaseCredit()),
+                MaterialPageRoute(
+                    builder: (context) => IncreaseCredit(
+                          credit: StaticFields.activeUser!.credit,
+                        )),
               );
             },
             child: Container(
@@ -120,13 +122,14 @@ class _AccountState extends State<Account> {
           ),
 
           SizedBox(
-            height: 250,
+            height: 220,
           ),
           //log out button
           Container(
             decoration: BoxDecoration(border: Border.all(color: Colors.red)),
             child: TextButton(
               onPressed: () {
+                StaticFields.activeUser = null;
                 Navigator.of(context).push(
                   MaterialPageRoute(builder: (context) => const Sign_in()),
                 );
@@ -148,14 +151,11 @@ class _AccountState extends State<Account> {
   }
 }
 
-class IncreaseCredit extends StatefulWidget {
-  const IncreaseCredit({Key? key}) : super(key: key);
+class IncreaseCredit extends StatelessWidget {
+  final int credit;
 
-  @override
-  State<IncreaseCredit> createState() => _IncreaseCreditState();
-}
+  IncreaseCredit({required this.credit});
 
-class _IncreaseCreditState extends State<IncreaseCredit> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -181,7 +181,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
           Row(
             children: [
               Text(
-                '  Your credit is \$50',
+                '  Your credit is \$' + credit.toString(),
                 style: TextStyle(
                   fontSize: 30,
                   fontFamily: 'OoohBaby',
@@ -214,7 +214,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const PaymentPage()),
+                        builder: (context) => const PaymentPage(credit: 5)),
                   );
                 },
               ),
@@ -243,7 +243,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const PaymentPage()),
+                        builder: (context) => const PaymentPage(credit: 10)),
                   );
                 },
               ),
@@ -272,7 +272,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const PaymentPage()),
+                        builder: (context) => const PaymentPage(credit: 25)),
                   );
                 },
               ),
@@ -301,7 +301,7 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                        builder: (context) => const PaymentPage()),
+                        builder: (context) => const PaymentPage(credit: 50)),
                   );
                 },
               ),
@@ -314,7 +314,9 @@ class _IncreaseCreditState extends State<IncreaseCredit> {
 }
 
 class PaymentPage extends StatefulWidget {
-  const PaymentPage({Key? key}) : super(key: key);
+  final int credit;
+
+  const PaymentPage({Key? key, required this.credit}) : super(key: key);
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -373,7 +375,7 @@ class _PaymentPageState extends State<PaymentPage> {
                   ),
                   Center(
                     child: Text(
-                      'Mohsen verdizadeh kohi',
+                      StaticFields.activeUser!.username,
                       style: TextStyle(
                           fontFamily: 'OoohBaby',
                           color: Color(0xFF232323),
@@ -446,16 +448,22 @@ class _PaymentPageState extends State<PaymentPage> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.of(context).pop(context);
-              Navigator.of(context).pop(context);
+              setState(() {
+                StaticFields.activeUser!.credit += widget.credit;
+                print(StaticFields.activeUser!.credit);
+              });
+              increaseCredit();
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Home_page()),
+              );
             },
             style: ButtonStyle(
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(18.0),
-                  )),
+                borderRadius: BorderRadius.circular(18.0),
+              )),
               backgroundColor:
-              MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
+                  MaterialStatePropertyAll<Color>(Color(0xFF3dd9d6)),
             ),
             child: Text(
               '   Pay   ',
@@ -468,5 +476,16 @@ class _PaymentPageState extends State<PaymentPage> {
         ],
       ),
     );
+  }
+
+  void increaseCredit() async {
+    await Socket.connect(StaticFields.ip, StaticFields.port)
+        .then((serverSocket) {
+      final data = "edit user&&" +
+          userToJson(StaticFields.activeUser!) +
+          StaticFields.postFix;
+      serverSocket.write(data);
+      serverSocket.flush();
+    });
   }
 }

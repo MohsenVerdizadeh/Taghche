@@ -16,6 +16,7 @@ class Sign_in extends StatefulWidget {
 
 class _Sign_inState extends State<Sign_in> {
   String response = '';
+  String showMessage = '';
   bool _passwordVisibility = true;
   TextEditingController _usernameController = TextEditingController(text: "");
   TextEditingController _passwordController = TextEditingController(text: "");
@@ -53,7 +54,12 @@ class _Sign_inState extends State<Sign_in> {
       serverSocket.listen((res) {
         setState(() {
           response = (String.fromCharCodes(res));
-          print('response: $response');
+          if (response == "Username does not exist" ||
+              response == "Password is incorrect") {
+            showMessage = response;
+          } else {
+            showMessage = "Sign in was successfully";
+          }
         });
       });
     });
@@ -151,14 +157,17 @@ class _Sign_inState extends State<Sign_in> {
                     if (validateUsername(_usernameController.text) == "~~" &&
                         validatePassword(_passwordController.text) == "~~") {
                       confirmUser(User(
-                          username: _usernameController.text,
-                          password: _passwordController.text));
+                        username: _usernameController.text,
+                        email: "",
+                        password: _passwordController.text,
+                        credit: 0,
+                        ebooks: [],
+                        audiobooks: [],
+                      ));
                       if (response == "Password is incorrect" ||
                           response == "Username does not exist") {
-
                       } else {
                         StaticFields.activeUser = userFromJson(response);
-                        response = "Sign in was successfully";
                         Navigator.of(context).push(
                           MaterialPageRoute(
                               builder: (context) => const Home_page()),
@@ -180,6 +189,16 @@ class _Sign_inState extends State<Sign_in> {
                         color: Color(0xFF297171),
                         fontWeight: FontWeight.bold,
                         fontSize: 18),
+                  ),
+                ),
+                SizedBox(
+                  height: 30,
+                ),
+                Text(
+                  showMessage,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
                   ),
                 ),
 

@@ -201,6 +201,8 @@ class _Sign_up extends State<Sign_up> {
                         email: _emailController.text,
                         password: _passwordController.text,
                         credit: 0,
+                        audiobooks: [],
+                        ebooks: [],
                       );
                       addUser(newUser);
                       if (response == 'account successfully created') {

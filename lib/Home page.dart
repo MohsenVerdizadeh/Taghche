@@ -1,11 +1,14 @@
+import 'dart:io';
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-
 
 import 'Home pages/Account.dart';
 import 'Home pages/Home.dart';
 import 'Home pages/Library.dart';
 import 'Home pages/Shop.dart';
+import 'oop classes/Models.dart';
+import 'oop classes/static_fields.dart';
 
 class Home_page extends StatefulWidget {
   const Home_page({Key? key}) : super(key: key);
@@ -34,10 +37,10 @@ class _Home_page extends State<Home_page> {
     ),
   ];
 
-  int index = 0;
+  int index = 2;
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
