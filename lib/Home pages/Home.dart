@@ -14,46 +14,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  // late List<Ebook> ebooks;
-  // late List<Audiobook> audiobooks;
-
-  // void getEbooks() async {
-  //   Socket serverSocket =
-  //       await Socket.connect(StaticFields.ip, StaticFields.port);
-  //   final data = "get all ebooks&&" + StaticFields.postFix;
-  //   serverSocket.write(data);
-  //   serverSocket.flush();
-  //   serverSocket.listen((res) {
-  //     setState(() {
-  //       final response = String.fromCharCodes(res);
-  //       print(response);
-  //       StaticFields.ebooks = ebookFromJson(response);
-  //     });
-  //   });
-  // }
-  //
-  // void getAudiobooks() async {
-  //   Socket serverSocket =
-  //       await Socket.connect(StaticFields.ip, StaticFields.port);
-  //   final data = "get all audiobooks&&" + StaticFields.postFix;
-  //   serverSocket.write(data);
-  //   serverSocket.flush();
-  //   serverSocket.listen((res) {
-  //     setState(() {
-  //       final response = String.fromCharCodes(res);
-  //       print(response);
-  //       StaticFields.audiobooks = audiobookFromJson(response);
-  //     });
-  //   });
-  // }
-
-  // @override
-  // void initState() async {
-  //   super.initState();
-  //   getEbooks();
-  //   getAudiobooks();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

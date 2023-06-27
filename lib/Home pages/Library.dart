@@ -41,54 +41,6 @@ class _LibraryState extends State<Library> {
             height: 10,
           ),
           Text(
-            '   Audiobooks',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'OoohBaby',
-              fontSize: 30,
-              color: Color(0xFF3dd9d6),
-            ),
-          ),
-          SizedBox(
-            height: 250,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: StaticFields.activeUser!.audiobooks.length,
-              itemBuilder: (context, index) {
-                String audiobookName = StaticFields.activeUser!
-                    .audiobooks[index]; // get the ebook at the current index
-                late Audiobook audiobook;
-
-                for (int i = 0; i < StaticFields.audiobooks.length; i++) {
-                  if (audiobookName == StaticFields.audiobooks[i].name) {
-                    audiobook = StaticFields.audiobooks[i];
-                    break;
-                  }
-                }
-                return Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => AudiobookDetails(
-                            audiobook: audiobook,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Ink.image(
-                      image: AssetImage(audiobook.imagePath),
-                      // use the image path from the ebook
-                      width: 150,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                );
-              },
-            ),
-          ),
-          Text(
             '   Ebooks',
             style: TextStyle(
               fontWeight: FontWeight.bold,
@@ -126,6 +78,53 @@ class _LibraryState extends State<Library> {
                     },
                     child: Ink.image(
                       image: AssetImage(ebook.imagePath),
+                      // use the image path from the ebook
+                      width: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+          Text(
+            '   Audiobooks',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontFamily: 'OoohBaby',
+              fontSize: 30,
+              color: Color(0xFF3dd9d6),
+            ),
+          ),
+          SizedBox(
+            height: 250,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: StaticFields.activeUser!.audiobooks.length,
+              itemBuilder: (context, index) {
+                String audiobookName = StaticFields.activeUser!
+                    .audiobooks[index]; // get the ebook at the current index
+                late Audiobook audiobook;
+                for (int i = 0; i < StaticFields.audiobooks.length; i++) {
+                  if (audiobookName == StaticFields.audiobooks[i].name) {
+                    audiobook = StaticFields.audiobooks[i];
+                    break;
+                  }
+                }
+                return Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => AudiobookDetails(
+                            audiobook: audiobook,
+                          ),
+                        ),
+                      );
+                    },
+                    child: Ink.image(
+                      image: AssetImage(audiobook.imagePath),
                       // use the image path from the ebook
                       width: 150,
                       fit: BoxFit.cover,

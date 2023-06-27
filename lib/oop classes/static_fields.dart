@@ -7,7 +7,7 @@ class StaticFields {
   static int port = 8000;
   static List<Audiobook> audiobooks = [
     Audiobook(
-        name: "Lady Tan's Circle of Women",
+        name: "Lady Tan's Circle of Wo",
         authorName: "Lisa See",
         price: 19,
         description:
