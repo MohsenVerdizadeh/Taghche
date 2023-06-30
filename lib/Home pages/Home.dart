@@ -14,6 +14,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Ebook searchEbook(String ebookName) {
+    for (int i = 0; i < StaticFields.ebooks.length; i++) {
+      if (StaticFields.ebooks[i].name == ebookName) {
+        return StaticFields.ebooks[i];
+      }
+    }
+    return Ebook(
+        name: "name",
+        authorName: "authorName",
+        price: 0,
+        description: "description",
+        imagePath: "imagePath",
+        path: "path",
+        topSelling: false,
+        rate: 1.2);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -27,78 +44,95 @@ class _HomeState extends State<Home> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                height: 130,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: Color(0xFF297171),
-                ),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(15),
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage("assets/images/1.jpg"),
-                          ),
+              child: StaticFields.activeUser!.ebooks.isEmpty
+                  ? Padding(
+                      padding: const EdgeInsets.only(
+                          left: 8.0, top: 10.0, right: 8.0, bottom: 30.0),
+                      child: Text(
+                        "You don't have any book",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 35,
+                          fontFamily: 'OoohBaby',
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                    )
+                  : Container(
+                      height: 130,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: Color(0xFF297171),
+                      ),
+                      child: Row(
                         children: [
-                          Text(
-                            "how to java programm",
-                            style: TextStyle(
-                              color: Color(0xFF232323),
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'OoohBaby',
-                            ),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          Text(
-                            "ditel ditel",
-                            style: TextStyle(
-                              color: Color(0xFF232323),
-                              fontSize: 20,
-                              fontFamily: 'OoohBaby',
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              // if (StaticFields.activeUser!.ebooks.last !=
-                              //     null) {
-                              //   Navigator.of(context).push(
-                              //     MaterialPageRoute(
-                              //         builder: (context) =>
-                              //             const AudiobookDetails()),
-                              //   );
-                              // }
-                            },
-                            child: Text(
-                              'details',
-                              style: TextStyle(
-                                color: Color(0xFF3dd9d6),
-                                fontSize: 20,
-                                fontFamily: 'OoohBaby',
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Container(
+                              width: 100,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                image: DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage(searchEbook(
+                                          StaticFields.activeUser!.ebooks[0])
+                                      .imagePath),
+                                ),
                               ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(5),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  searchEbook(
+                                          StaticFields.activeUser!.ebooks[0])
+                                      .name,
+                                  style: TextStyle(
+                                    color: Color(0xFF232323),
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'OoohBaby',
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Text(
+                                  searchEbook(
+                                          StaticFields.activeUser!.ebooks[0])
+                                      .authorName,
+                                  style: TextStyle(
+                                    color: Color(0xFF232323),
+                                    fontSize: 20,
+                                    fontFamily: 'OoohBaby',
+                                  ),
+                                ),
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                          builder: (context) => EbookDetails(
+                                              ebook: searchEbook(StaticFields
+                                                  .activeUser!.ebooks[0]))),
+                                    );
+                                  },
+                                  child: Text(
+                                    'details',
+                                    style: TextStyle(
+                                      color: Color(0xFF3dd9d6),
+                                      fontSize: 20,
+                                      fontFamily: 'OoohBaby',
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ),
-              ),
             ),
             Container(
               child: TabBar(
@@ -281,8 +315,9 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                           AudiobookDetails(audiobook: audiobook,),
+                                      builder: (context) => AudiobookDetails(
+                                        audiobook: audiobook,
+                                      ),
                                     ),
                                   );
                                 },
@@ -320,8 +355,9 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Navigator.of(context).push(
                                     MaterialPageRoute(
-                                      builder: (context) =>
-                                           AudiobookDetails(audiobook: audiobook,),
+                                      builder: (context) => AudiobookDetails(
+                                        audiobook: audiobook,
+                                      ),
                                     ),
                                   );
                                 },
@@ -360,8 +396,9 @@ class _HomeState extends State<Home> {
                                   onTap: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) =>
-                                             AudiobookDetails(audiobook: audiobook,),
+                                        builder: (context) => AudiobookDetails(
+                                          audiobook: audiobook,
+                                        ),
                                       ),
                                     );
                                   },

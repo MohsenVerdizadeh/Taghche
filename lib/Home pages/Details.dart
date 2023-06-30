@@ -2,8 +2,27 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:project/example.dart';
 import 'package:project/oop%20classes/Models.dart';
 import 'package:project/oop%20classes/static_fields.dart';
+
+import 'dart:io';
+
+
+// Future<void> main() async {
+//   final pdf = pw.Document();
+//
+//   pdf.addPage(
+//     pw.Page(
+//       build: (pw.Context context) => pw.Center(
+//         child: pw.Text('Hello World!'),
+//       ),
+//     ),
+//   );
+//
+//   final file = File('assets/pdf/1.pdf');
+//   await file.writeAsBytes(await pdf.save());
+// }
 
 class EbookDetails extends StatefulWidget {
   final Ebook ebook;
@@ -101,8 +120,7 @@ class _EbookDetailsState extends State<EbookDetails> {
           ),
           MaterialButton(
             onPressed: () {
-              if (StaticFields.activeUser!.ebooks
-                  .contains(widget.ebook.name)) {
+              if (StaticFields.activeUser!.ebooks.contains(widget.ebook.name)) {
                 setState(() {
                   showMessage = "You have this ebook";
                 });
@@ -151,7 +169,11 @@ class _EbookDetailsState extends State<EbookDetails> {
             height: 20,
           ),
           MaterialButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => ReaderScreen()),
+              );
+            },
             child: Container(
               height: 50,
               width: 300,
@@ -161,7 +183,7 @@ class _EbookDetailsState extends State<EbookDetails> {
                   borderRadius: BorderRadius.circular(10)),
               child: Center(
                 child: Text(
-                  'Example' /*book.price*/,
+                  'Example',
                   style: TextStyle(
                       color: Color(0xFF3dd9d6),
                       fontWeight: FontWeight.bold,
@@ -204,10 +226,34 @@ class _EbookDetailsState extends State<EbookDetails> {
   }
 }
 
+// class MyPDFView extends StatefulWidget {
+//   final String ebookPath;
+//
+//   const MyPDFView({Key? key, required this.ebookPath}) : super(key: key);
+//
+//   @override
+//   _MyPDFViewState createState() => _MyPDFViewState();
+// }
+//
+// class _MyPDFViewState extends State<MyPDFView> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text("Pdf view"),
+//         centerTitle: true,
+//       ),
+//       body: Container(
+//         child: PDF.asset(widget.ebookPath,)
+//       ),
+//     );
+//   }
+// }
+
 class AudiobookDetails extends StatefulWidget {
   final Audiobook audiobook;
 
-  AudiobookDetails({required this.audiobook});
+  AudiobookDetails({super.key, required this.audiobook});
 
   @override
   State<AudiobookDetails> createState() => _AudiobookDetailsState();

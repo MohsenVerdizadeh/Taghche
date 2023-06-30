@@ -3,7 +3,7 @@ import 'Models.dart';
 class StaticFields {
   static User? activeUser;
   static String postFix = "\u0000";
-  static String ip = '192.168.1.103';
+  static String ip = '192.168.43.20';
   static int port = 8000;
   static List<Audiobook> audiobooks = [
     Audiobook(
