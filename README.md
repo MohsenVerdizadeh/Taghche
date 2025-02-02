@@ -1,6 +1,6 @@
 # porject
 
-A new Flutter project.
+Taghche is the final project of my advanced programming course. It is a mobile application for selling books and implements with Java and Flutter.
 
 ## Getting Started
 
